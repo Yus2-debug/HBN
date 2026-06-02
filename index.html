@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#101b35" />
     <title>HBN 慢光阴 | 你的白，值得等</title>
-    <link rel="stylesheet" href="./styles.css?v=slow-light-32" />
+    <link rel="preload" as="image" href="./assets/images/scene-alarm-sm.jpg" />
+    <link rel="preload" as="image" href="./assets/images/scene-elevator-sm.jpg" />
+    <link rel="preload" as="image" href="./assets/images/scene-mirror-sm.jpg" />
+    <link rel="preload" as="image" href="./assets/images/scene-phone-sm.jpg" />
+    <link rel="stylesheet" href="./styles.css?v=slow-light-33" />
   </head>
   <body>
     <div class="phone" id="app">
@@ -58,10 +62,10 @@
       <main class="deck">
         <section class="scene intro scene-active" data-scene="0">
           <div class="rush-collage" id="rushCollage">
-            <img src="./assets/images/scene-alarm-clean.jpg" alt="闹钟狂响的早晨" />
-            <img src="./assets/images/scene-elevator-clean.jpg" alt="赶电梯的通勤" />
-            <img src="./assets/images/scene-mirror-clean.jpg" alt="镜子前三秒护肤" />
-            <img src="./assets/images/scene-phone-clean.jpg" alt="用滤镜发朋友圈" />
+            <img src="./assets/images/scene-alarm-sm.jpg" alt="闹钟狂响的早晨" fetchpriority="high" decoding="async" />
+            <img src="./assets/images/scene-elevator-sm.jpg" alt="赶电梯的通勤" fetchpriority="high" decoding="async" />
+            <img src="./assets/images/scene-mirror-sm.jpg" alt="镜子前三秒护肤" fetchpriority="high" decoding="async" />
+            <img src="./assets/images/scene-phone-sm.jpg" alt="用滤镜发朋友圈" fetchpriority="high" decoding="async" />
           </div>
           <div class="rush-filter" id="rushFilter"></div>
           <div class="comic-layer" aria-hidden="true">
@@ -86,19 +90,19 @@
             </div>
             <div class="intro-mini-comic" id="introMiniComic" aria-live="polite">
               <figure>
-                <img src="./assets/images/scene-alarm-clean.jpg" alt="闹钟狂响的早晨" />
+                <img src="./assets/images/scene-alarm-sm.jpg" alt="闹钟狂响的早晨" loading="lazy" decoding="async" />
                 <figcaption>叮铃铃！</figcaption>
               </figure>
               <figure>
-                <img src="./assets/images/scene-elevator-clean.jpg" alt="赶电梯的通勤" />
+                <img src="./assets/images/scene-elevator-sm.jpg" alt="赶电梯的通勤" loading="lazy" decoding="async" />
                 <figcaption>快一点！</figcaption>
               </figure>
               <figure>
-                <img src="./assets/images/scene-mirror-clean.jpg" alt="镜子前三秒护肤" />
+                <img src="./assets/images/scene-mirror-sm.jpg" alt="镜子前三秒护肤" loading="lazy" decoding="async" />
                 <figcaption>3秒上脸</figcaption>
               </figure>
               <figure>
-                <img src="./assets/images/scene-phone-clean.jpg" alt="用滤镜发朋友圈" />
+                <img src="./assets/images/scene-phone-sm.jpg" alt="用滤镜发朋友圈" loading="lazy" decoding="async" />
                 <figcaption>滤镜救急？</figcaption>
               </figure>
             </div>
@@ -116,7 +120,7 @@
 
           <div class="split-stage" id="splitStage" style="--split: 50; --fast-size: 50%; --slow-size: 50%">
             <article class="split-pane fast-pane">
-              <img src="./assets/images/timeline-fast.png" alt="快速美白翻车实录" />
+              <img src="./assets/images/timeline-fast-sm.jpg" alt="快速美白翻车实录" loading="lazy" decoding="async" />
               <div class="line-badge fast-badge">时间线A「快的白」</div>
               <ul class="timeline-points">
                 <li><strong>Day1</strong><span>速白产品，立刻发光</span></li>
@@ -128,7 +132,7 @@
             </article>
 
             <article class="split-pane slow-pane">
-              <img src="./assets/images/timeline-slow.png" alt="HBN 慢白焕肤时间线" />
+              <img src="./assets/images/timeline-slow-sm.jpg" alt="HBN 慢白焕肤时间线" loading="lazy" decoding="async" />
               <div class="line-badge slow-badge">时间线B「慢的白」</div>
               <ul class="timeline-points">
                 <li><strong>Day1</strong><span>开始用 HBN 原白水乳</span></li>
@@ -151,7 +155,7 @@
 
         <section class="scene proof" data-scene="2">
           <div class="flower-scene">
-            <img src="./assets/images/slow-sun.png" alt="慢光阴光环" />
+            <img src="./assets/images/slow-sun-sm.jpg" alt="慢光阴光环" loading="lazy" decoding="async" />
             <div class="petal-data">
               <button class="petal is-open" type="button" data-proof="0">6000+</button>
               <button class="petal" type="button" data-proof="1">50+</button>
@@ -182,8 +186,8 @@
                 <span>产品图在这页落地，不再只看数据。</span>
               </div>
               <div class="proof-band-products">
-                <img src="./assets/images/product-water.png" alt="HBN 原白水" />
-                <img src="./assets/images/product-lotion.png" alt="HBN 原白乳" />
+                <img src="./assets/images/product-water-sm.png" alt="HBN 原白水" loading="lazy" decoding="async" />
+                <img src="./assets/images/product-lotion-sm.png" alt="HBN 原白乳" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -211,7 +215,7 @@
           </label>
 
           <div class="slow-card" id="slowCard">
-            <img class="card-scene-image" id="cardSceneImage" src="./assets/images/moment-coffee.jpg" alt="慢慢喝完一杯咖啡" />
+            <img class="card-scene-image" id="cardSceneImage" src="./assets/images/moment-coffee-sm.jpg" alt="慢慢喝完一杯咖啡" loading="lazy" decoding="async" />
             <div class="card-bg"></div>
             <span class="card-brand">HBN</span>
             <p>慢光阴卡片</p>
@@ -219,8 +223,8 @@
             <strong>你等一朵花开需要 60 天，HBN 等一篇 SCI 论文需要 3 年。</strong>
             <em>慢一点，远一点。</em>
             <div class="card-products">
-              <img src="./assets/images/product-water.png" alt="" />
-              <img src="./assets/images/product-lotion.png" alt="" />
+              <img src="./assets/images/product-water-sm.png" alt="" loading="lazy" decoding="async" />
+              <img src="./assets/images/product-lotion-sm.png" alt="" loading="lazy" decoding="async" />
             </div>
           </div>
 
@@ -250,7 +254,7 @@
         <section class="scene finale" data-scene="5">
           <div class="final-showcase" id="finalShowcase">
             <div class="final-poster" id="finalPoster">
-              <img class="final-poster-art" src="./assets/images/final-poster-v3.png" alt="HBN 慢一点，远一点最终海报" />
+              <img class="final-poster-art" src="./assets/images/final-poster-v3-light.jpg" alt="HBN 慢一点，远一点最终海报" loading="lazy" decoding="async" />
             </div>
           </div>
 
@@ -268,6 +272,6 @@
       </main>
     </div>
 
-    <script src="./script.js?v=slow-light-32" charset="utf-8"></script>
+    <script src="./script.js?v=slow-light-33" charset="utf-8"></script>
   </body>
 </html>

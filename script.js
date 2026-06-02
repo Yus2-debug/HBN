@@ -49,22 +49,42 @@ const moments = {
 
 const momentScenes = {
   coffee: {
-    src: "./assets/images/moment-coffee.jpg",
+    src: "./assets/images/moment-coffee-sm.jpg",
     alt: "慢慢喝完一杯咖啡",
   },
   book: {
-    src: "./assets/images/moment-book.png",
+    src: "./assets/images/moment-book-sm.jpg",
     alt: "慢慢看完一本书",
   },
   bright: {
-    src: "./assets/images/moment-bright.png",
+    src: "./assets/images/moment-bright-sm.jpg",
     alt: "慢慢变白，不反黑",
   },
   draw: {
-    src: "./assets/images/moment-draw.png",
+    src: "./assets/images/moment-draw-sm.jpg",
     alt: "慢慢画一幅画",
   },
 };
+
+const criticalImages = [
+  "./assets/images/scene-alarm-sm.jpg",
+  "./assets/images/scene-elevator-sm.jpg",
+  "./assets/images/scene-mirror-sm.jpg",
+  "./assets/images/scene-phone-sm.jpg",
+];
+
+const preloadImages = [
+  "./assets/images/timeline-fast-sm.jpg",
+  "./assets/images/timeline-slow-sm.jpg",
+  "./assets/images/slow-sun-sm.jpg",
+  "./assets/images/product-water-sm.png",
+  "./assets/images/product-lotion-sm.png",
+  "./assets/images/moment-coffee-sm.jpg",
+  "./assets/images/moment-book-sm.jpg",
+  "./assets/images/moment-bright-sm.jpg",
+  "./assets/images/moment-draw-sm.jpg",
+  "./assets/images/final-poster-v3-light.jpg",
+];
 
 let currentScene = 0;
 let slowValue = 0;
@@ -633,7 +653,7 @@ function wrapText(context, text, x, y, width, lineHeight, maxLines) {
 async function makePoster() {
   const posterCanvas = document.getElementById("posterCanvas");
   const posterCtx = posterCanvas.getContext("2d");
-  const finalPoster = await loadImage("./assets/images/final-poster-v3.png");
+  const finalPoster = await loadImage("./assets/images/final-poster-v3-light.jpg");
 
   posterCanvas.width = finalPoster.naturalWidth || finalPoster.width;
   posterCanvas.height = finalPoster.naturalHeight || finalPoster.height;
@@ -674,18 +694,42 @@ document.getElementById("restart").addEventListener("click", () => {
 
 function startLoader() {
   if (!loaderScreen || !loaderBar || !loaderPercent) return;
-  let progress = 0;
-  const timer = window.setInterval(() => {
-    progress = Math.min(100, progress + (progress < 68 ? 9 : 4));
+  let visualProgress = 0;
+  let loadedCritical = 0;
+  const minimumDisplayTime = 850;
+  const startTime = Date.now();
+  const setProgress = (value) => {
+    visualProgress = Math.max(visualProgress, Math.min(100, value));
+    const progress = Math.round(visualProgress);
     loaderBar.style.width = `${progress}%`;
     loaderPercent.textContent = `${progress}%`;
-    if (progress >= 100) {
-      window.clearInterval(timer);
+  };
+  const loadCritical = criticalImages.map((src) =>
+    loadImage(src)
+      .then((image) => image.decode?.().catch(() => undefined))
+      .catch(() => undefined)
+      .finally(() => {
+        loadedCritical += 1;
+        setProgress(22 + (loadedCritical / criticalImages.length) * 58);
+      })
+  );
+  const timer = window.setInterval(() => {
+    const target = 18 + (loadedCritical / criticalImages.length) * 62;
+    setProgress(Math.min(88, Math.max(visualProgress + 1.4, target)));
+  }, 90);
+
+  Promise.allSettled(loadCritical).then(() => {
+    window.clearInterval(timer);
+    const elapsed = Date.now() - startTime;
+    const delay = Math.max(0, minimumDisplayTime - elapsed);
+    window.setTimeout(() => {
+      setProgress(100);
       window.setTimeout(() => {
         loaderScreen.classList.add("is-hidden");
-      }, 360);
-    }
-  }, 95);
+        preloadImages.forEach((src) => loadImage(src).catch(() => undefined));
+      }, 260);
+    }, delay);
+  });
 }
 
 drawBaseRing();
