@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#101b35" />
+    <title>HBN 慢光阴 | 你的白，值得等</title>
+    <link rel="stylesheet" href="./styles.css?v=slow-light-25" />
+  </head>
+  <body>
+    <div class="phone" id="app">
+      <div class="loader-screen" id="loaderScreen" role="status" aria-live="polite">
+        <div class="loader-mark">
+          <span>HBN</span>
+          <em>慢一点，远一点</em>
+        </div>
+        <div class="loader-orbit" aria-hidden="true">
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+        <div class="loader-progress" aria-label="加载进度">
+          <b id="loaderBar"></b>
+        </div>
+        <p id="loaderPercent">0%</p>
+        <strong>慢光阴正在展开</strong>
+      </div>
+
+      <header class="topbar" aria-label="HBN">
+        <div class="brand">
+          <span>HBN</span>
+          <em>慢一点，远一点</em>
+        </div>
+        <div class="progress" aria-hidden="true">
+          <span class="is-active"></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </header>
+
+      <div class="utility-controls" aria-label="页面控制">
+        <button class="utility-btn" id="backScene" type="button" aria-label="返回上一页" disabled>
+          <span aria-hidden="true">‹</span>
+        </button>
+        <button class="utility-btn music-toggle" id="musicToggle" type="button" aria-label="开启音乐" aria-pressed="false">
+          <span aria-hidden="true">♪</span>
+        </button>
+      </div>
+
+      <div class="scene-guide" id="sceneGuide" aria-live="polite">
+        <span id="sceneGuideLabel">操作提示</span>
+        <strong id="sceneGuideText">按住中间圆环，让时间慢到 100%</strong>
+      </div>
+
+      <main class="deck">
+        <section class="scene intro scene-active" data-scene="0">
+          <div class="rush-collage" id="rushCollage">
+            <img src="./assets/images/scene-alarm-clean.jpg" alt="闹钟狂响的早晨" />
+            <img src="./assets/images/scene-elevator-clean.jpg" alt="赶电梯的通勤" />
+            <img src="./assets/images/scene-mirror-clean.jpg" alt="镜子前三秒护肤" />
+            <img src="./assets/images/scene-phone-clean.jpg" alt="用滤镜发朋友圈" />
+          </div>
+          <div class="rush-filter" id="rushFilter"></div>
+          <div class="comic-layer" aria-hidden="true">
+            <span class="comic-burst comic-burst-alarm">叮铃铃！</span>
+            <span class="comic-burst comic-burst-run">快一点！</span>
+            <span class="comic-burst comic-burst-care">3秒上脸</span>
+            <span class="comic-burst comic-burst-filter">滤镜救急？</span>
+          </div>
+          <div class="intro-copy">
+            <p class="eyebrow">SLOW LIGHT STORY</p>
+            <h1>慢光阴</h1>
+            <p>你的白，值得等。</p>
+          </div>
+          <div class="intro-center">
+            <div class="hold-zone" id="holdZone" role="button" tabindex="0" aria-label="按住让时间慢下来">
+              <svg viewBox="0 0 120 120" aria-hidden="true">
+                <circle cx="60" cy="60" r="52"></circle>
+                <circle id="holdRing" cx="60" cy="60" r="52"></circle>
+              </svg>
+              <strong id="holdPercent">0%</strong>
+              <span>按住，让时间慢下来</span>
+            </div>
+            <div class="intro-mini-comic" id="introMiniComic" aria-live="polite">
+              <figure>
+                <img src="./assets/images/scene-alarm-clean.jpg" alt="闹钟狂响的早晨" />
+                <figcaption>叮铃铃！</figcaption>
+              </figure>
+              <figure>
+                <img src="./assets/images/scene-elevator-clean.jpg" alt="赶电梯的通勤" />
+                <figcaption>快一点！</figcaption>
+              </figure>
+              <figure>
+                <img src="./assets/images/scene-mirror-clean.jpg" alt="镜子前三秒护肤" />
+                <figcaption>3秒上脸</figcaption>
+              </figure>
+              <figure>
+                <img src="./assets/images/scene-phone-clean.jpg" alt="用滤镜发朋友圈" />
+                <figcaption>滤镜救急？</figcaption>
+              </figure>
+            </div>
+            <p class="control-hint">长按或点击圆环，进度到 100% 后进入下一页</p>
+          </div>
+          <button class="primary" id="introNext" type="button" disabled>看见两条时间线</button>
+        </section>
+
+        <section class="scene timeline split-timeline" data-scene="1">
+          <div class="section-copy">
+            <p class="eyebrow">TWO TIMELINES</p>
+            <h2>两条白的时间线</h2>
+            <p>拖动下方滑杆，选择进入“快的白”或“慢的白”。一边反复亮暗循环，一边像花一样稳稳变好。</p>
+          </div>
+
+          <div class="split-stage" id="splitStage" style="--split: 50; --fast-size: 50%; --slow-size: 50%">
+            <article class="split-pane fast-pane">
+              <img src="./assets/images/timeline-fast.png" alt="快速美白翻车实录" />
+              <div class="line-badge fast-badge">时间线A「快的白」</div>
+              <ul class="timeline-points">
+                <li><strong>Day1</strong><span>速白产品，立刻发光</span></li>
+                <li><strong>Day14</strong><span>超白！拍照超好看</span></li>
+                <li><strong>Day30</strong><span>反黑了，比之前更暗</span></li>
+                <li><strong>Day60</strong><span>又换一瓶，继续循环</span></li>
+              </ul>
+              <div class="loop-mark" aria-hidden="true"></div>
+            </article>
+
+            <article class="split-pane slow-pane">
+              <img src="./assets/images/timeline-slow.png" alt="HBN 慢白焕肤时间线" />
+              <div class="line-badge slow-badge">时间线B「慢的白」</div>
+              <ul class="timeline-points">
+                <li><strong>Day1</strong><span>开始用 HBN 原白水乳</span></li>
+                <li><strong>Day14</strong><span>变化细微，皮肤更稳定</span></li>
+                <li><strong>Day30</strong><span>自然透亮，不反黑</span></li>
+                <li><strong>Day60</strong><span>96.9% 用户实测认可</span></li>
+              </ul>
+              <div class="bloom-mark" aria-hidden="true"></div>
+            </article>
+
+            <div class="split-divider" aria-hidden="true"><span></span></div>
+          </div>
+
+          <input id="timelineSlider" class="timeline-slider" type="range" min="0" max="100" value="50" aria-label="滑动选择快的白或慢的白" />
+          <div class="timeline-choice" id="timelineChoice">停在中间：同时看见两种结局</div>
+          <p class="control-hint">拖动滑杆，左右切换“快白”和“慢白”</p>
+
+          <button class="primary" type="button" data-next>解锁慢科研花瓣</button>
+        </section>
+
+        <section class="scene proof" data-scene="2">
+          <div class="flower-scene">
+            <img src="./assets/images/slow-sun.png" alt="慢光阴光环" />
+            <div class="petal-data">
+              <button class="petal is-open" type="button" data-proof="0">6000+</button>
+              <button class="petal" type="button" data-proof="1">50+</button>
+              <button class="petal" type="button" data-proof="2">50.69%</button>
+              <button class="petal" type="button" data-proof="3">96.9%</button>
+            </div>
+          </div>
+          <div class="proof-card" id="proofCard">
+            <div class="proof-copy">
+              <p class="eyebrow">HBN SLOW SCIENCE</p>
+              <h2 id="proofTitle">6000+ 人次人体功效实测</h2>
+              <p id="proofText">在国际权威机构和三甲医院临床进行人体功效实测，远超行业与国标常规验证标准。</p>
+            </div>
+            <div class="proof-game" aria-live="polite">
+              <span>点亮慢科研任务</span>
+              <strong id="proofScore">0/4</strong>
+            </div>
+            <div class="science-stars" aria-label="慢科研任务小游戏">
+              <button class="science-star science-star-sample" type="button" data-proof="0"><span>实测样本</span></button>
+              <button class="science-star science-star-paper" type="button" data-proof="1"><span>SCI成果</span></button>
+              <button class="science-star science-star-melanin" type="button" data-proof="2"><span>抑黑数据</span></button>
+              <button class="science-star science-star-user" type="button" data-proof="3"><span>用户认可</span></button>
+            </div>
+            <p class="control-hint">点击花瓣或任务点，集齐 4 个慢科研数据</p>
+            <div class="proof-band" aria-label="HBN 原白水乳套组">
+              <div class="proof-band-copy">
+                <strong>原白水 + 原白乳</strong>
+                <span>产品图在这页落地，不再只看数据。</span>
+              </div>
+              <div class="proof-band-products">
+                <img src="./assets/images/product-water.png" alt="HBN 原白水" />
+                <img src="./assets/images/product-lotion.png" alt="HBN 原白乳" />
+              </div>
+            </div>
+          </div>
+          <button class="primary" type="button" data-next>生成我的慢光阴卡片</button>
+        </section>
+
+        <section class="scene card-maker" data-scene="3">
+          <div class="section-copy">
+            <p class="eyebrow">MY SLOW MOMENT</p>
+            <h2>你最想慢下来的瞬间是什么？</h2>
+            <p>选择或写下一个瞬间，生成你的专属慢光阴宣言。</p>
+          </div>
+
+          <div class="moment-grid">
+            <button class="moment is-active" type="button" data-moment="coffee">慢慢喝完一杯咖啡</button>
+            <button class="moment" type="button" data-moment="book">慢慢看完一本书</button>
+            <button class="moment" type="button" data-moment="bright">慢慢变白，不反黑</button>
+            <button class="moment" type="button" data-moment="draw">慢慢画一幅画</button>
+          </div>
+          <p class="control-hint">点击一个场景，下面卡片会换成对应图片</p>
+
+          <label class="custom-moment">
+            <span>自定义慢时刻</span>
+            <input id="customMoment" type="text" maxlength="18" placeholder="例如：慢慢散一次步" />
+          </label>
+
+          <div class="slow-card" id="slowCard">
+            <img class="card-scene-image" id="cardSceneImage" src="./assets/images/moment-coffee.jpg" alt="慢慢喝完一杯咖啡" />
+            <div class="card-bg"></div>
+            <span class="card-brand">HBN</span>
+            <p>慢光阴卡片</p>
+            <h3 id="cardTitle">我选择慢慢喝完一杯咖啡</h3>
+            <strong>你等一朵花开需要 60 天，HBN 等一篇 SCI 论文需要 3 年。</strong>
+            <em>慢一点，远一点。</em>
+            <div class="card-products">
+              <img src="./assets/images/product-water.png" alt="" />
+              <img src="./assets/images/product-lotion.png" alt="" />
+            </div>
+          </div>
+
+          <button class="primary" type="button" data-next>完成一次慢的仪式</button>
+        </section>
+
+        <section class="scene ritual" data-scene="4">
+          <div class="section-copy">
+            <p class="eyebrow">SLOW CHALLENGE</p>
+            <h2>用最慢的速度，画一个圆</h2>
+            <p>手指沿着圆环慢慢走。越慢，画面越亮，最后绽放成光透焕白圆环。</p>
+          </div>
+
+          <div class="draw-stage" id="drawStage">
+            <canvas id="drawCanvas" width="320" height="320" aria-label="慢画圆挑战"></canvas>
+            <div class="draw-core">
+              <strong id="drawTime">0.0s</strong>
+              <span id="drawHint">沿圆环慢慢画</span>
+            </div>
+          </div>
+          <p class="control-hint">按住圆环边缘移动，尽量画完整一圈</p>
+
+          <div class="ritual-result" id="ritualResult">慢下来，让真实的光出现。</div>
+          <button class="primary" type="button" data-next>查看最终海报</button>
+        </section>
+
+        <section class="scene finale" data-scene="5">
+          <div class="final-showcase" id="finalShowcase">
+            <div class="final-poster" id="finalPoster">
+              <img class="final-poster-art" src="./assets/images/final-poster-v3.png" alt="HBN 慢一点，远一点最终海报" />
+            </div>
+          </div>
+
+          <canvas id="posterCanvas" width="900" height="1600" hidden></canvas>
+          <img class="poster-preview" id="posterPreview" alt="生成的慢光阴海报" hidden />
+          <p class="control-hint final-save-hint">点击生成海报后，长按图片即可保存分享</p>
+
+          <div class="final-actions">
+            <button class="primary" id="makePoster" type="button">生成可保存海报</button>
+            <button class="secondary" id="copyText" type="button">复制分享文案</button>
+            <button class="ghost" id="restart" type="button">再体验一次</button>
+          </div>
+          <p class="final-note" id="finalNote">HBN · 让真功效名副其实</p>
+        </section>
+      </main>
+    </div>
+
+    <script src="./script.js?v=slow-light-25" charset="utf-8"></script>
+  </body>
+</html>
